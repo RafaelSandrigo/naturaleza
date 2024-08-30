@@ -1,6 +1,6 @@
-function copyToClipboard(input = 'mensagemCopia') {
+function copyToClipboard() {
     
-    let text = (input == 'mensagemCopia') ? document.getElementById(text) : input;
+    let text = document.getElementById('mensagem');
     text.select();
     text.setSelectionRange(0, 99999);
 

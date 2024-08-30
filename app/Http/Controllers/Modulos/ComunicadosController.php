@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cabecalho;
 use Illuminate\Http\Request;
 
-class CabecalhoController extends Controller
+class ComunicadosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class CabecalhoController extends Controller
      */
     public function index()
     {
-        $cabecalhos = (new Cabecalho())->all();
-        return view('cabecalho', ['title' => 'Cabeçalho','cabecalhos' =>$cabecalhos]);
+        //
     }
 
     /**
@@ -42,10 +40,10 @@ class CabecalhoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cabecalho  $cabecalho
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cabecalho $cabecalho)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class CabecalhoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cabecalho  $cabecalho
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cabecalho $cabecalho)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +63,10 @@ class CabecalhoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cabecalho  $cabecalho
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cabecalho $cabecalho)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class CabecalhoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cabecalho  $cabecalho
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cabecalho $cabecalho)
+    public function destroy($id)
     {
         //
     }

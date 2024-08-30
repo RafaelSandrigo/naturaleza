@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCabecalhoTable extends Migration
+class CreateCabecalhos extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateCabecalhoTable extends Migration
      */
     public function up()
     {
-        Schema::create('cabecalho', function (Blueprint $table) {
+        Schema::create('cabecalhos', function (Blueprint $table) {
             $table->id();
             $table->string('nome_cabecalho');
             $table->time('horario_pedido');
@@ -35,6 +35,6 @@ class CreateCabecalhoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cabecalho');
+        Schema::dropIfExists('cabecalhos');
     }
 }

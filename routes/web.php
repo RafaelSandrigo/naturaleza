@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/produtos', [ProdutosController::class, 'index'])->name('produtos');
 Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias');
-Route::get('/cabecalhos', [CabecalhoController::class, 'index'])->name('cabecalho');
+Route::get('/cabecalhos', [CabecalhoController::class, 'index'])->name('cabecalhos');
 
 
 Route::post('/produtos', [ProdutosController::class, 'store'])->name('produtos.store');
@@ -37,4 +37,5 @@ Route::delete('/produtos/{produto}', [ProdutosController::class, 'destroy'])->na
 require_once dirname(__FILE__) . '/routesAPI/categoriaAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/itensAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/cabecalhoAPI.php';
+require_once dirname(__FILE__) . '/routesAPI/produtosAPI.php';
 

@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProduto;
 use App\Http\Requests\UpdateProduto;
 use App\Models\Categorias;
 use App\Models\Produtos;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 
-class ProdutosController extends Controller
+class ApiProdutosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,20 +20,9 @@ class ProdutosController extends Controller
     {
         $produtos = Produtos::all();
         $produtos = (new Produtos)->listaProdutos();
-
-        $categorias = (new Categorias)->listaCategorias();
         
-        return view('produtos', ['title' => 'Produtos', 'produtos' => $produtos, 'categorias' => $categorias]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // return view('produtos.create');
+        return response()->json(['success' => 'true', 'data' => $produtos],200);
+        
     }
 
     /**
@@ -45,19 +31,9 @@ class ProdutosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProduto $request)
+    public function store(Request $request)
     {
-        $validatedData = $request->validated();
-
-        try {
-            $saved = (new Produtos())->insert($validatedData);
-
-            return response()->json(["success" => $saved, "message" => 'Produto cadsatrado com sucesso']);
-
-        } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage(), "message" => 'Erro ao cadastrar produto'], 502);
-        }
-
+        //
     }
 
     /**
@@ -72,19 +48,8 @@ class ProdutosController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Produtos  $produtos
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Produtos $produtos)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Produtos  $produtos
      * @return \Illuminate\Http\Response
@@ -92,7 +57,6 @@ class ProdutosController extends Controller
     public function update(UpdateProduto $request, Produtos $produto)
     {  
         $validatedData = $request->validated();
-
         try {
             $update = $produto->update($validatedData);
             if(!$update){
@@ -102,8 +66,8 @@ class ProdutosController extends Controller
         } catch (Exception $e) {
             Log::warning('Conta não editada', ['error' => $e->getMessage()]);
             return response()->json(['error' => $e->getMessage()], 502);
-            
         }
+        
     }
 
     /**
@@ -112,18 +76,8 @@ class ProdutosController extends Controller
      * @param  \App\Models\Produtos  $produtos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produtos $produto)
+    public function destroy(Produtos $produtos)
     {
-        try{
-            $produto->delete();
-            return response()->json(['message' => "Produto deletado com sucesso"], 200);
-        }catch(Exception $e){
-            return response()->json(['message' => "Não foi possivle deletar o produto"], 200);
-        }
+        //
     }
-
-    public function debug(Request $request, Produtos $produto){
-        return response()->json(['message' => $request->all()], 200);
-    }
-
 }

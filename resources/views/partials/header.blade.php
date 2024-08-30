@@ -8,7 +8,7 @@
 </style>
 <link rel="stylesheet" href="{{ asset('css/layout/header.css') }}">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">BrandName</a>
+    <a class="navbar-brand" href="#">Naturaleza</a>
 
     <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">
@@ -27,9 +27,9 @@
                     Módulos
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="modulosDropdown">
-                    <li><a class="dropdown-item" href="{{route('cabecalho')}}">Cabeçalho</a></li>
-                    <li><a class="dropdown-item" href="{{route('cabecalho')}}">Comunicados</a></li>
-                    <li><a class="dropdown-item" href="{{route('cabecalho')}}">Fechamento</a></li>
+                    <li><a class="dropdown-item" href="{{route('cabecalhos')}}">Cabeçalho</a></li>
+                    <li><a class="dropdown-item" href="{{route('cabecalhos')}}">Comunicados</a></li>
+                    <li><a class="dropdown-item" href="{{route('cabecalhos')}}">Fechamento</a></li>
                 </ul>
             </li>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCabecalho;
 use App\Models\Cabecalho;
+use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,9 @@ class ApiCabecalhoController extends Controller
      */
     public function store(StoreCabecalho $request)
     {
+        dd($request);
         $validatedData = $request->validated();
-        // dd($validatedData);
+        dd($validatedData);
 
         try {
             if(empty($validatedData)){
@@ -76,4 +78,5 @@ class ApiCabecalhoController extends Controller
     {
         //
     }
+
 }

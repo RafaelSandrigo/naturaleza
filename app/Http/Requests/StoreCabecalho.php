@@ -26,7 +26,7 @@ class StoreCabecalho extends FormRequest
         return [
             'nome_cabecalho' => 'string|max:50',
             'horario_pedido' => 'date_format:H:i',
-            'dia_pedido' => 'date_format:Y/m/d',
+            'dia_pedido' => 'date',
             'inic_horas_entrega' => 'date_format:Y/m/d',
             'fim_horas_entrega' => 'date_format:Y/m/d|after:inic_horas_entrega',
             'dia_entrega' => 'date_format:Y/m/d',            

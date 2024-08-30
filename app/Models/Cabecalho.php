@@ -45,4 +45,10 @@ class Cabecalho extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Formatar o campo de horario
+    public function formatTime($value)
+    {
+        return \Carbon\Carbon::createFromFormat('H:i:s', $value)->format('H:i');
+    }
 }
