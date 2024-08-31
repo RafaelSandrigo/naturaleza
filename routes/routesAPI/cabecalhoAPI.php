@@ -12,6 +12,7 @@ Route::post('/api/cabecalhos', [ApiCabecalhoController::class, 'store'])->name('
 // PUT
 Route::put('/api/cabecalhos/{cabecalho}', [ApiCabecalhoController::class, 'update'])->name('api.cabecalho.update');
 
+
 // DELETE
 Route::delete('/api/cabecalhos/{cabecalho}', [ApiCabecalhoController::class, 'destroy'])->name('api.cabecalho.destroy');
 

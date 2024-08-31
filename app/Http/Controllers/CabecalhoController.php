@@ -47,7 +47,10 @@ class CabecalhoController extends Controller
      */
     public function show(Cabecalho $cabecalho)
     {
-        //
+        
+        $cabecalho->inic_horas_entrega = $cabecalho->formatTime($cabecalho->inic_horas_entrega);
+        $cabecalho->fim_horas_entrega = $cabecalho->formatTime($cabecalho->fim_horas_entrega);
+        return view('editCabecalho', ['title' => "Editar Cabeçalho", "cabecalho" => $cabecalho]);
     }
 
     /**

@@ -43,7 +43,7 @@
             <tr>
                 {{-- Status do cabecalho --}}
                 <td class="text-center align-middle">
-                    <input type="checkbox" name="status_cabecalho" class="form-check-input" {{($cabecalho->status_cabecalho === 's') ? 'checked' : '' }} value="{{($cabecalho->status_cabecalho = 's') ? 's' : 'n' }}>
+                    <input type="checkbox" name="status_cabecalho" class="form-check-input" {{($cabecalho->status_cabecalho === 's') ? 'checked' : '' }} value="{{($cabecalho->status_cabecalho = 's') ? 's' : 'n' }}" >
                 </td>
                 {{-- Nome do cabecalho --}}
                 <td class="text-center align-middle">

@@ -22,6 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/produtos', [ProdutosController::class, 'index'])->name('produtos');
 Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias');
 Route::get('/cabecalhos', [CabecalhoController::class, 'index'])->name('cabecalhos');
+Route::get('/cabecalhos/{cabecalho}', [CabecalhoController::class, 'show'])->name('cabecalho.show');
 
 
 Route::post('/produtos', [ProdutosController::class, 'store'])->name('produtos.store');
@@ -32,8 +33,6 @@ Route::put('/produtos/{produto}', [ProdutosController::class, 'update'])->name('
 Route::delete('/produtos/{produto}', [ProdutosController::class, 'destroy'])->name('produtos.delete');
 
 // API 
-
-// CATEGORIA 
 require_once dirname(__FILE__) . '/routesAPI/categoriaAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/itensAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/cabecalhoAPI.php';
