@@ -29,6 +29,7 @@ Route::post('/produtos', [ProdutosController::class, 'store'])->name('produtos.s
 
 
 Route::put('/produtos/{produto}', [ProdutosController::class, 'update'])->name('produtos.update');
+Route::put('/cabecalhos/{cabecalho}', [CabecalhoController::class, 'update'])->name('cabecalhos.update');
 
 Route::delete('/produtos/{produto}', [ProdutosController::class, 'destroy'])->name('produtos.delete');
 
@@ -37,4 +38,10 @@ require_once dirname(__FILE__) . '/routesAPI/categoriaAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/itensAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/cabecalhoAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/produtosAPI.php';
+
+
+
+Route::fallback(function(){
+    return view('');
+});
 

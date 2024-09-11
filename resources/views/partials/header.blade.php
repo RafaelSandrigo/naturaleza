@@ -8,7 +8,7 @@
 </style>
 <link rel="stylesheet" href="{{ asset('css/layout/header.css') }}">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Naturaleza</a>
+    <a class="navbar-brand" href="/">Naturaleza</a>
 
     <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">

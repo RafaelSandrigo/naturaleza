@@ -19,5 +19,6 @@ class VerifyCsrfToken extends Middleware
         '/api/cabecalhos/*',
         '/api/cabecalhos',
         '/api/produtos/*',
+        '/cabecalhos/*',
     ];
 }

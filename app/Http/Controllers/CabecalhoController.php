@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CabecalhoRequest;
+use App\Http\Requests\RequestCabecalho;
+use App\Http\Requests\StoreCabecalho;
 use App\Models\Cabecalho;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CabecalhoController extends Controller
 {
@@ -47,9 +52,9 @@ class CabecalhoController extends Controller
      */
     public function show(Cabecalho $cabecalho)
     {
-        
         $cabecalho->inic_horas_entrega = $cabecalho->formatTime($cabecalho->inic_horas_entrega);
         $cabecalho->fim_horas_entrega = $cabecalho->formatTime($cabecalho->fim_horas_entrega);
+        $cabecalho->horario_pedido = $cabecalho->formatTime($cabecalho->horario_pedido);
         return view('editCabecalho', ['title' => "Editar Cabeçalho", "cabecalho" => $cabecalho]);
     }
 
@@ -61,7 +66,7 @@ class CabecalhoController extends Controller
      */
     public function edit(Cabecalho $cabecalho)
     {
-        //
+        
     }
 
     /**
@@ -71,9 +76,27 @@ class CabecalhoController extends Controller
      * @param  \App\Models\Cabecalho  $cabecalho
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cabecalho $cabecalho)
+    public function update(RequestCabecalho $request, Cabecalho $cabecalho)
     {
-        //
+        try {
+            $validatedData = $request->validarRequired();
+            if($validatedData == false){
+                return response()->json(["success" => 'false',"message" => "Todos os campos precisam ser informados"],502);
+            }
+            $validatedData = $request->validarFormatoDados();
+        
+            if($validatedData == false){
+                throw new Exception("Erro na validacao dos dados. Dados invalidos");
+            }
+            $update = $cabecalho->update($validatedData);
+            if(!$update){
+                throw new Exception('Falha ao atualizar a cab$cabecalho');
+            }
+            return response()->json(['success'=> 'true', 'message' => 'Cabeçalho atualizado com sucesso', 'data' => $validatedData], 200);
+        } catch (Exception $e) {
+            Log::warning('Conta não editada', ['error' => $e->getMessage()]);
+            return response()->json(['error' => $e->getMessage()], 502);
+        }
     }
 
     /**

@@ -24,7 +24,8 @@ class Cabecalho extends Model
         'inic_horas_entrega',
         'fim_horas_entrega',
         'dia_entrega',
-        'texto_cabecalho',        
+        'texto_cabecalho',
+        'status_cabecalho',       
     ];
 
     /**

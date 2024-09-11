@@ -54,11 +54,6 @@ class Produtos extends Authenticatable
     }
     
     public function produtosPorCategoria($idCategoria) {
-        // return DB::table('produtos')
-        // ->select('id','nome_produto','medida_produto', 'preco_produto', 'id_categoria')
-        // ->where('id_categoria', '=', $idCategoria)
-        // ->where('status_produto', '=', 's')
-        // ->get();
         $results = DB::table('produtos')
         ->select('id','nome_produto','medida_produto', 'preco_produto', 'id_categoria')
         ->where('id_categoria', '=', $idCategoria)

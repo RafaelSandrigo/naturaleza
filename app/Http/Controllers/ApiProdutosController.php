@@ -54,8 +54,14 @@ class ApiProdutosController extends Controller
      * @param  \App\Models\Produtos  $produtos
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProduto $request, Produtos $produto)
+    public function update(UpdateProduto $request, $id)
     {  
+        try {
+            $produto = Produtos::findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Produto não encontrado'], 404);
+        }
+
         $validatedData = $request->validated();
         try {
             $update = $produto->update($validatedData);

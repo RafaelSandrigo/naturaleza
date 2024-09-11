@@ -67,12 +67,18 @@ class ApiCategoriasController extends Controller
      * @param  \App\Models\Categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoria $request, Categorias $categorias)
+    public function update(UpdateCategoria $request, $id)
     {
+        try {
+            $categoria = Categorias::findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Categoria não encontrada'], 404);
+        }
+
         $validatedData = $request->validated();
 
         try {
-            $update = $categorias->update($validatedData);
+            $update = $categoria->update($validatedData);
             if(!$update){
                 throw new Exception('Falha ao atualizar a categoria');
             }

@@ -17,6 +17,7 @@ class CreateCabecalhos extends Migration
         Schema::create('cabecalhos', function (Blueprint $table) {
             $table->id();
             $table->string('nome_cabecalho');
+            $table->enum('status_cabecalho', ['s', 'n']);
             $table->time('horario_pedido');
             $table->string('dia_pedido');            
             $table->time('inic_horas_entrega');
