@@ -96,10 +96,16 @@ class ApiCategoriasController extends Controller
      * @param  \App\Models\Categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorias $categorias)
+    public function destroy($id)
     {
         try {
-            $result = $categorias->delete();
+            $categoria = Categorias::findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Categoria não encontrada'], 404);
+        }
+
+        try {
+            $result = $categoria->delete();
 
             if ($result) {
                 return response()->json(['message' => "Categoria deletada com sucesso"], 200);

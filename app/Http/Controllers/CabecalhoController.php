@@ -50,8 +50,14 @@ class CabecalhoController extends Controller
      * @param  \App\Models\Cabecalho  $cabecalho
      * @return \Illuminate\Http\Response
      */
-    public function show(Cabecalho $cabecalho)
+    public function show($id)
     {
+        try {
+            $cabecalho = Cabecalho::findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Cabeçalho não encontrado'], 404);
+        }
+
         $cabecalho->inic_horas_entrega = $cabecalho->formatTime($cabecalho->inic_horas_entrega);
         $cabecalho->fim_horas_entrega = $cabecalho->formatTime($cabecalho->fim_horas_entrega);
         $cabecalho->horario_pedido = $cabecalho->formatTime($cabecalho->horario_pedido);
@@ -76,8 +82,14 @@ class CabecalhoController extends Controller
      * @param  \App\Models\Cabecalho  $cabecalho
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestCabecalho $request, Cabecalho $cabecalho)
-    {
+    public function update(RequestCabecalho $request,$id)
+    {   
+        try {
+            $cabecalho = Cabecalho::findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Cabeçalho não encontrado'], 404);
+        }
+
         try {
             $validatedData = $request->validarRequired();
             if($validatedData == false){

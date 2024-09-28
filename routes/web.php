@@ -42,6 +42,6 @@ require_once dirname(__FILE__) . '/routesAPI/produtosAPI.php';
 
 
 Route::fallback(function(){
-    return view('');
+    return view('errors.404');
 });
 
