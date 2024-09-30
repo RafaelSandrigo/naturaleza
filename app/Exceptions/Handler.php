@@ -30,39 +30,60 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    public function register()
-    {
-        $this->renderable(function (NotFoundHttpException $e, $request) {
-            return response()->json([
-                'error' => 'Página não encontrada'
-            ], 404);
-        });
-    }
+    // public function register()
+    // {
+    //     $this->renderable(function (NotFoundHttpException $e, $request) {
+    //         return response()->json([
+    //             'error' => 'Página não encontrada'
+    //         ], 404);
+    //     });
+    // }
     public function render($request, Throwable $exception)
     {
-        // return abort(404);
-        // dd(debug_backtrace());
+        $requesURI = $request->getRequestUri();
+        
+        // Se a exceção for um erro 401 (não autorizado)
+        switch (get_class($exception)) {
+            case "Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException":
+                return response()->view('errors.401', ['title' => 'Não Autorizado'], 401);
 
-        dd([
-            'exception_class' => get_class($exception),
-            'exception_message' => $exception->getMessage(),
-            'exception_trace' => $exception->getTraceAsString(),
-        ]);
+            case "Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException":
+                return response()->view('errors.403', ['title' => 'Acesso Negado'], 403);
 
-        // Se a exceção for um erro 404 (rota não encontrada)
-        if ($exception instanceof NotFoundHttpException) {
-            return response()->view('errors.404', [], 404);
+            case "Symfony\Component\HttpKernel\Exception\NotFoundHttpException":
+                if (str_contains($requesURI, "/api")) {
+                    return response()->json(["message" => 'Not Found'], 404);
+                }
+                return response()->view('errors.404', ['title' => 'Página Não Encontrada'], 404);
+
+            case "Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException":
+                return response()->json(["message" => "Metodo não suportado"], 405);
+
+            case "Illuminate\Session\TokenMismatchException":
+                return response()->view('errors.419', ['title' => 'Sessão Expirada'], 419);
+
+            case "Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException":
+                return response()->view('errors.429', ['title' => 'Muitas Requisições'], 429);
+
+            case "Symfony\Component\HttpKernel\Exception\HttpException":
+                return response()->view('errors.500', ['title' => 'Erro Interno'], 500);
+
+            case "Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException":
+                return response()->view('errors.503', ['title' => 'Serviço Indisponível'], 503);
+
+            case "Illuminate\Database\Eloquent\ModelNotFoundException":
+                return response()->view('errors.404', ['title' => 'Página Não Encontrada'], 404);
+
+            default:
+                // Se a exceção não for reconhecida, você pode retornar um erro genérico ou re-lançar a exceção
+                throw $exception;
         }
 
-        // Se a exceção for de modelo não encontrado
-        if ($exception instanceof ModelNotFoundException) {
-            return response()->view('errors.404', [], 404);
-        }
 
-        // Para outros tipos de exceção, você pode usar a view padrão ou definir uma personalizada
-        return parent::render($request, $exception);
-
+        // Para outros tipos de exceção, é lançado um erro padrão
+        return response()->view('errors.generico', ['title' => 'Acesso negado'], 403);
     }
+
     /**
      * Register the exception handling callbacks for the application.
      *
