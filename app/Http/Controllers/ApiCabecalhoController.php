@@ -28,9 +28,6 @@ class ApiCabecalhoController extends Controller
      */
     public function store(StoreCabecalho $request)
     {
-        dd($request);
-        $validatedData = $request->validated();
-        dd($validatedData);
 
         try {
             if(empty($validatedData)){
