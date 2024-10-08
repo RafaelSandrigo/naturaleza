@@ -37,7 +37,11 @@ class ApiItensController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -48,7 +52,11 @@ class ApiItensController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -60,7 +68,11 @@ class ApiItensController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -71,7 +83,11 @@ class ApiItensController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
     /**
     * Realiza uma busca dos produtos pelas categorias, retornando um array com as categorias como nome do indice e os produtos dentro do array

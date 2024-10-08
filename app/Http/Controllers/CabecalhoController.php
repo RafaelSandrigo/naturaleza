@@ -72,7 +72,11 @@ class CabecalhoController extends Controller
      */
     public function edit(Cabecalho $cabecalho)
     {
-        
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -119,6 +123,10 @@ class CabecalhoController extends Controller
      */
     public function destroy(Cabecalho $cabecalho)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 }

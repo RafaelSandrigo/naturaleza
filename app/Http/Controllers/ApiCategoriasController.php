@@ -57,7 +57,11 @@ class ApiCategoriasController extends Controller
      */
     public function show(Categorias $categorias)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**

@@ -36,7 +36,11 @@ class ProdutosController extends Controller
      */
     public function create()
     {
-        // return view('produtos.create');
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -68,7 +72,11 @@ class ProdutosController extends Controller
      */
     public function show(Produtos $produtos)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -79,7 +87,11 @@ class ProdutosController extends Controller
      */
     public function edit(Produtos $produtos)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**

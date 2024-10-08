@@ -33,7 +33,11 @@ class ApiProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -42,9 +46,19 @@ class ApiProdutosController extends Controller
      * @param  \App\Models\Produtos  $produtos
      * @return \Illuminate\Http\Response
      */
-    public function show(Produtos $produtos)
+    public function show($id)
     {
-        //
+        try {
+            $produto = Produtos::findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Produto não encontrado'], 404);
+        }
+        try {
+            return response()->json(['success' =>true, 'data'=> $produto], 200);
+        } catch (Exception $e) {
+            return response()->json(['success'=>false, 'error'=>'Erro ao localizar o produto'],502);
+        }
+
     }
 
     /**
@@ -84,6 +98,10 @@ class ApiProdutosController extends Controller
      */
     public function destroy(Produtos $produtos)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 }

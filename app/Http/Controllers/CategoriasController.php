@@ -25,7 +25,11 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -36,7 +40,11 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -47,7 +55,11 @@ class CategoriasController extends Controller
      */
     public function show(Categorias $categorias)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -58,7 +70,11 @@ class CategoriasController extends Controller
      */
     public function edit(Categorias $categorias)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -70,7 +86,11 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, Categorias $categorias)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -81,6 +101,10 @@ class CategoriasController extends Controller
      */
     public function destroy(Categorias $categorias)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 }

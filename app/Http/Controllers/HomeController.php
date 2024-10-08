@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,11 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -34,7 +39,11 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -45,7 +54,11 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -56,7 +69,11 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -68,7 +85,11 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -79,6 +100,10 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 }

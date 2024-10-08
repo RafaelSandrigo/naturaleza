@@ -17,7 +17,11 @@ class ApiCabecalhoController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -50,7 +54,11 @@ class ApiCabecalhoController extends Controller
      */
     public function show(Cabecalho $cabecalho)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -62,7 +70,11 @@ class ApiCabecalhoController extends Controller
      */
     public function update(Request $request, Cabecalho $cabecalho)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
     /**
@@ -73,7 +85,11 @@ class ApiCabecalhoController extends Controller
      */
     public function destroy(Cabecalho $cabecalho)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
     }
 
 }
