@@ -27,6 +27,7 @@
                     Módulos
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="modulosDropdown">
+                    <li><a class="dropdown-item" href="{{route('alertas')}}">Alertas</a></li>
                     <li><a class="dropdown-item" href="{{route('cabecalhos')}}">Cabeçalho</a></li>
                     <li><a class="dropdown-item" href="{{route('cabecalhos')}}">Comunicados</a></li>
                     <li><a class="dropdown-item" href="{{route('cabecalhos')}}">Fechamento</a></li>

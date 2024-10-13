@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestCabecalho;
 use App\Http\Requests\StoreCabecalho;
 use App\Models\Cabecalho;
 use DateTime;
@@ -17,6 +18,13 @@ class ApiCabecalhoController extends Controller
      */
     public function index()
     {
+        try{
+            $cabecalhos = (new Cabecalho())->all(); 
+            return response()->json(["success" => true, "data" => $cabecalhos]);
+        }catch(Exception $e){
+
+        }
+
         try {
             return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
         } catch (Exception $e) {
@@ -30,19 +38,26 @@ class ApiCabecalhoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCabecalho $request)
+    public function store(RequestCabecalho $request)
     {
-
         try {
-            if(empty($validatedData)){
-                throw new Exception();
+            $validatedData = $request->validarRequired();
+            if($validatedData == false){
+                return response()->json(["success" => 'false',"message" => "Todos os campos precisam ser informados"],502);
             }
-            $saved = (new Cabecalho)->insert($validatedData);
-
-            return response()->json(["success" => $saved, "message" => 'Cabeçalho cadastrado com sucesso']);
-
+            $validatedData = $request->validarFormatoDados();
+        
+            if($validatedData == false){
+                throw new Exception("Erro na validacao dos dados. Dados invalidos");
+            }
+            $saved = (new Cabecalho())->insert($validatedData);
+            if ($saved) {
+                return response()->json(["success" => True,"message" => "Cabeçalho cadastrado com sucesso"], 200);
+            }else{
+                throw new Exception();	
+            }
         } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage(), "message" => 'Erro ao cadastrar Categoria'], 502);
+            return response()->json(["success"=>false, "error"=>"Erro ao criar o cabeçalho"]);
         }
     }
 
@@ -90,6 +105,16 @@ class ApiCabecalhoController extends Controller
         } catch (Exception $e) {
             return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
         }
+    }
+
+    public function cabecalhoAtivo(){
+        try {
+            $cabecalho = (new Cabecalho())->buscaByStatus("s");    
+            return response()->json(['success' => true, 'data' => $cabecalho]);
+        } catch (Exception $e)  {
+            return response()->json(['success' => false, "error" => $e->getMessage()]);
+        }     
+        
     }
 
 }

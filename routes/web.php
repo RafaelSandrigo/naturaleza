@@ -38,6 +38,7 @@ require_once dirname(__FILE__) . '/routesAPI/categoriaAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/itensAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/cabecalhoAPI.php';
 require_once dirname(__FILE__) . '/routesAPI/produtosAPI.php';
+require_once dirname(__FILE__) . '/routesAPI/fechamentosAPI.php';
 
 
 

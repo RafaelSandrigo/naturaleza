@@ -12,6 +12,37 @@ async function preencheItens(){
     });
 }
 
+async function buscaCabecalho(){
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: '/api/cabecalho/ativo', 
+            method: 'GET', 
+            success: function(response) {
+                let cabecalho = response['data'];
+                console.log(cabecalho);
+                resolve(cabecalho);  // Resolva a Promise com o resultado
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                reject(jqXHR.responseJSON.message);  // Rejeite a Promise em caso de erro
+            }
+        });
+    });
+}
+
+async function preencheCabecalho() {
+    try {
+        let textarea = document.getElementById('cabecalho');
+        let cabecalho = await buscaCabecalho(); // Use await para aguardar o retorno
+        console.log(cabecalho);
+        textarea.innerHTML = cabecalho.texto_cabecalho;  // Substitui o conteúdo do textarea
+
+        ajustaTextareaHeight(textarea.id);  // Chama função para ajustar a altura do textarea
+    } catch (error) {
+        alert(error);  // Exibe o erro, se houver
+    }
+}
+
+
 async function escreveProdutosPorCategoria(categorias) {
     let textarea = document.getElementById('itens');
     if (typeof categorias == 'string') {
@@ -56,3 +87,4 @@ function preencheMenssagem(){
 }
 
 preencheItens();
+preencheCabecalho();

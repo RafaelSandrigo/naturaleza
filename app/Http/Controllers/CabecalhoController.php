@@ -6,6 +6,7 @@ use App\Http\Requests\CabecalhoRequest;
 use App\Http\Requests\RequestCabecalho;
 use App\Http\Requests\StoreCabecalho;
 use App\Models\Cabecalho;
+use App\Models\Produtos;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -39,9 +40,14 @@ class CabecalhoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestCabecalho $request)
     {
-        //
+        try {
+            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+        }
+        
     }
 
     /**
@@ -110,7 +116,7 @@ class CabecalhoController extends Controller
             }
             return response()->json(['success'=> 'true', 'message' => 'Cabeçalho atualizado com sucesso', 'data' => $validatedData], 200);
         } catch (Exception $e) {
-            Log::warning('Conta não editada', ['error' => $e->getMessage()]);
+            Log::warning('Cabeçalho não editada', ['error' => $e->getMessage()]);
             return response()->json(['error' => $e->getMessage()], 502);
         }
     }

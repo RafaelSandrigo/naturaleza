@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // GET
 Route::get('/api/cabecalhos', [ApiCabecalhoController::class, 'index'])->name('api.cabecalho.index');
+Route::get('/api/cabecalho/ativo', [ApiCabecalhoController::class, 'cabecalhoAtivo'])->name('api.cabecalho.cabecalhoAtivo');
 
 // POST
 Route::post('/api/cabecalhos', [ApiCabecalhoController::class, 'store'])->name('api.cabecalho.store');

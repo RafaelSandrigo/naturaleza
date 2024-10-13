@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class Cabecalho extends Model
@@ -52,4 +53,14 @@ class Cabecalho extends Model
     {
         return \Carbon\Carbon::createFromFormat('H:i:s', $value)->format('H:i');
     }
+
+    public function buscaByStatus($status){
+        $result = DB::table('cabecalhos')
+        ->select("*")
+        ->where("status_cabecalho", "=", $status)
+        ->first();
+
+        return $result;
+    }
+
 }
