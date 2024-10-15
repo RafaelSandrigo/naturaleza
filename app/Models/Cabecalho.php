@@ -48,6 +48,12 @@ class Cabecalho extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Formata o campo de horario
+     *
+     * @param [type] $value
+     * @return void
+     */
     // Formatar o campo de horario
     public function formatTime($value)
     {

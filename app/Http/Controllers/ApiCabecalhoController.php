@@ -107,6 +107,13 @@ class ApiCabecalhoController extends Controller
         }
     }
 
+    /**
+     * Busca o cabeçalho que esta ativo. 
+     * Retorna um json com o primeiro cabeçalho ativo encontrado
+     * 
+     * @return json
+     */
+
     public function cabecalhoAtivo(){
         try {
             $cabecalho = (new Cabecalho())->buscaByStatus("s");    

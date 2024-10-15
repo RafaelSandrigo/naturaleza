@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestFechamentos;
 use App\Models\Fechamentos;
 use Exception;
 use Illuminate\Http\Request;
@@ -29,12 +30,17 @@ class ApiFechamentosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestFechamentos $request)
     {
         try {
             
-        } catch (\Throwable $th) {
-            //throw $th;
+            $validatedData = $request->validated();
+            $saved = (new Fechamentos())->insert($validatedData);
+            if($saved){
+                return response()->json(["success"=>True,"message"=>"Fechamento Cadastrado com sucesso"],200);
+            }
+        } catch (Exception $e) {
+            return response()->json(["success"=>false, "error"=>"Erro ao criar o Fechamento"]);
         }
     }
 
@@ -44,9 +50,18 @@ class ApiFechamentosController extends Controller
      * @param  \App\Models\Fechamentos  $fechamentos
      * @return \Illuminate\Http\Response
      */
-    public function show(Fechamentos $fechamentos)
+    public function show($id)
     {
-        //
+        try {
+            $fechamento = Fechamentos::findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Cabeçalho não encontrado'], 404);
+        }
+        try{
+            return response()->json(["success"=>True, "data" => $fechamento],200);
+        }catch(Exception $e){
+            return response()->json(["success"=>false, "error"=>"Erro ao encontrar o 'Fechamento'"]);
+        }
     }
 
     /**
@@ -56,9 +71,21 @@ class ApiFechamentosController extends Controller
      * @param  \App\Models\Fechamentos  $fechamentos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fechamentos $fechamentos)
+    public function update(RequestFechamentos $request, $id)
     {
-        //
+        try {
+            $validatedData = $request->validated();
+            $fechamento = Fechamentos::findOrFail($id);
+            $update = $fechamento->update($validatedData);
+            
+            if(!$update){
+                throw new Exception("Não foi possível atualizar o 'Fechamento'");
+            }
+            return response()->json(["success" => True, "message" => "Atualização realizada com sucesso"],200);
+
+        } catch (Exception $e) {
+            return response()->json(["success"=>False, "error"=> "Erro ao atualizar o 'Fechamento'"],502);
+        }
     }
 
     /**
@@ -67,8 +94,25 @@ class ApiFechamentosController extends Controller
      * @param  \App\Models\Fechamentos  $fechamentos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fechamentos $fechamentos)
+    public function destroy($id)
     {
-        //
+        try {
+            $fechamento = Fechamentos::findOrFail($id);
+            $fechamento->delete();
+            return response()->json(["success"=>True, "message"=>"Fechamento com o Id: $id deletado com sucesso"],200);
+        } catch (Exception $e) {
+            return response()->json(["success"=>False, "error"=> "Erro ao deletar o 'Fechamento'"],502);
+        }
     }
+
+    public function getByStatus($status){
+        try {
+            $status = $status == "ativo" ? "s" : "n";
+            $cabecalho = (new Fechamentos())->getByStatus($status);    
+            return response()->json(['success' => true, 'data' => $cabecalho]);
+        } catch (Exception $e)  {
+            return response()->json(['success' => false, "error" => $e->getMessage()]);
+        }
+    }
+
 }

@@ -64,10 +64,14 @@ class CabecalhoController extends Controller
             return response()->json(['message' => 'Cabeçalho não encontrado'], 404);
         }
 
-        $cabecalho->inic_horas_entrega = $cabecalho->formatTime($cabecalho->inic_horas_entrega);
-        $cabecalho->fim_horas_entrega = $cabecalho->formatTime($cabecalho->fim_horas_entrega);
-        $cabecalho->horario_pedido = $cabecalho->formatTime($cabecalho->horario_pedido);
-        return view('editCabecalho', ['title' => "Editar Cabeçalho", "cabecalho" => $cabecalho]);
+        try {
+            $cabecalho->inic_horas_entrega = $cabecalho->formatTime($cabecalho->inic_horas_entrega);
+            $cabecalho->fim_horas_entrega = $cabecalho->formatTime($cabecalho->fim_horas_entrega);
+            $cabecalho->horario_pedido = $cabecalho->formatTime($cabecalho->horario_pedido);
+            return view('editCabecalho', ['title' => "Editar Cabeçalho", "cabecalho" => $cabecalho]);
+        } catch (Exception $e) {
+            return response()->view('errors.500', ['title' => 'Erro Interno'], 500);
+        }
     }
 
     /**

@@ -17,6 +17,7 @@ class CreateFechamentosTable extends Migration
         Schema::create('fechamentos', function (Blueprint $table) {
             $table->id();
             $table->string('texto_fechamento', 500);
+            $table->enum('status_fechamento', ['s', 'n']);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
         });
