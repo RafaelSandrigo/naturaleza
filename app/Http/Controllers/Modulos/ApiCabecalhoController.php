@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Modulos;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestCabecalho;
 use App\Http\Requests\StoreCabecalho;
 use App\Models\Cabecalho;

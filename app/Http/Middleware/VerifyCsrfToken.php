@@ -21,6 +21,9 @@ class VerifyCsrfToken extends Middleware
         '/api/produtos/*',
         '/api/fechamentos/*',
         '/api/fechamentos',
+        '/api/alertas',
+        '/api/alertas/*',
         '/cabecalhos/*',
+        '/api/*',
     ];
 }

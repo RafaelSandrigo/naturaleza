@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Modulos;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestFechamentos;
+use App\Models\Alertas;
 use App\Models\Fechamentos;
 use Exception;
 use Illuminate\Http\Request;
@@ -40,7 +42,7 @@ class ApiFechamentosController extends Controller
                 return response()->json(["success"=>True,"message"=>"Fechamento Cadastrado com sucesso"],200);
             }
         } catch (Exception $e) {
-            return response()->json(["success"=>false, "error"=>"Erro ao criar o Fechamento"]);
+            return response()->json(["success"=>false, "error"=>"Erro ao criar o Fechamento"],502);
         }
     }
 
@@ -55,7 +57,7 @@ class ApiFechamentosController extends Controller
         try {
             $fechamento = Fechamentos::findOrFail($id);
         } catch (Exception $e) {
-            return response()->json(['message' => 'Cabeçalho não encontrado'], 404);
+            return response()->json(['message' => 'Alerta não encontrado'], 404);
         }
         try{
             return response()->json(["success"=>True, "data" => $fechamento],200);
@@ -74,8 +76,12 @@ class ApiFechamentosController extends Controller
     public function update(RequestFechamentos $request, $id)
     {
         try {
+            $fechamento = Alertas::findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Alertas não encontrado'], 404);
+        }
+        try {
             $validatedData = $request->validated();
-            $fechamento = Fechamentos::findOrFail($id);
             $update = $fechamento->update($validatedData);
             
             if(!$update){

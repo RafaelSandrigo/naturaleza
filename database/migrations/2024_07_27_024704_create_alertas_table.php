@@ -17,7 +17,7 @@ class CreateAlertasTable extends Migration
         Schema::create('alertas', function (Blueprint $table) {
             $table->id();
             $table->string("texto_alerta", 500);
-            $table->enum('status_alertas', ['s', 'n']);
+            $table->enum('status_alerta', ['s', 'n']);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
         });

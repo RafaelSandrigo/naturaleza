@@ -1,7 +1,7 @@
 
 <?php
 
-use App\Http\Controllers\ApiFechamentosController;
+use App\Http\Controllers\Modulos\ApiFechamentosController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,7 +15,7 @@ Route::post('/api/fechamentos', [ApiFechamentosController::class, 'store'])->nam
 
 
 // PUT
-Route::put('/api/fechamentos/{fechamentos}', [ApiFechamentosController::class, 'update'])->name('fechamentos.update');
+Route::put('/api/fechamentos/{id}', [ApiFechamentosController::class, 'update'])->name('fechamentos.update');
 
 // DELETE
-Route::delete('/api/fechamentos/{fechamentos}', [ApiFechamentosController::class, 'destroy'])->name('fechamentos.delete');
+Route::delete('/api/fechamentos/{id}', [ApiFechamentosController::class, 'destroy'])->name('fechamentos.delete');

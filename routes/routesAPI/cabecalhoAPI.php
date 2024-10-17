@@ -1,5 +1,5 @@
 <?php 
-use App\Http\Controllers\ApiCabecalhoController;
+use App\Http\Controllers\Modulos\ApiCabecalhoController;
 use Illuminate\Support\Facades\Route;
 
 // GET
