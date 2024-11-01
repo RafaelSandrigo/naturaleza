@@ -74,7 +74,6 @@ class ApiAlertasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd('atas');
         try {
             $alerta = Alertas::findOrFail($id);
         } catch (Exception $e) {
@@ -118,9 +117,9 @@ class ApiAlertasController extends Controller
         }
     }
 
-    public function getByStatus($status){
+    public function getByStatus(Request $status){
         try {
-            $status = $status == "ativo" ? "s" : "n";
+            $status = $status->status == "ativo" ? "s" : "n";
             $alerta = (new Alertas())->getByStatus($status);    
             return response()->json(['success' => true, 'data' => $alerta]);
         } catch (Exception $e)  {
