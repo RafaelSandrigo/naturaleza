@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Modulos;
 
-use App\Http\Requests\CabecalhoRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestCabecalho;
-use App\Http\Requests\StoreCabecalho;
 use App\Models\Cabecalho;
-use App\Models\Produtos;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class CabecalhoController extends Controller

@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Modulos;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestCabecalho;
-use App\Http\Requests\StoreCabecalho;
 use App\Models\Cabecalho;
-use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -20,16 +18,10 @@ class ApiCabecalhoController extends Controller
     public function index()
     {
         try{
-            $cabecalhos = (new Cabecalho())->all(); 
+            $cabecalhos = (new Cabecalho())->all();
             return response()->json(["success" => true, "data" => $cabecalhos]);
         }catch(Exception $e){
-
-        }
-
-        try {
-            return response()->json(['success' => true, 'data'=> "Nao disponivel"],404);
-        } catch (Exception $e) {
-            return response()->json(['success' => false, 'data'=> "Nao disponivel"],502);
+            return response()->json(["success"=>false, "error"=>"Erro ao exibir o cabeçalho"]);
         }
     }
 

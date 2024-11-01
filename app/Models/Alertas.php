@@ -16,9 +16,9 @@ class Alertas extends Model
     ];
 
     public function getByStatus($status){
-        $result = DB::table('alretas')
+        $result = DB::table('alertas')
         ->select("*")
-        ->where("status_alertas", "=", $status)
+        ->where("status_alerta", "=", $status)
         ->first();
 
         return $result;

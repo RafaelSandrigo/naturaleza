@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 // GET
 Route::get('/api/alertas/', [ApiAlertasController::class, 'index'])->name('api.alertas');
-Route::get('/api/alertas/{id}', [ApiAlertasController::class, 'show'])->name('api.alertas.show');
 Route::get('/api/alertas/status', [ApiAlertasController::class, 'getByStatus'])->name('api.alertas.status');
+Route::get('/api/alertas/{id}', [ApiAlertasController::class, 'show'])->name('api.alertas.show');
 
 // POST
 Route::post('/api/alertas', [ApiAlertasController::class, 'store'])->name('api.store.alertas');
