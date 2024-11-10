@@ -1,8 +1,4 @@
 
-Aqui está um exemplo de um README.md para o seu sistema. O objetivo é ser claro e conciso, fornecendo informações essenciais e uma aparência visual agradável.
-
-markdown
-Copiar código
 # 🌿 Sistema de Gestão de Produtos e Categorias
 
 Bem-vindo ao **Sistema de Gestão de Produtos e Categorias**! Este sistema permite que você gerencie produtos e categorias de forma eficiente e intuitiva. Com ele, você pode adicionar, editar, deletar e listar produtos e categorias, bem como modificar o status e detalhes de cada um. 🛍️
