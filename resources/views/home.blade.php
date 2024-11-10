@@ -55,6 +55,7 @@
 
 <script src="{{ asset('js/formatting/fields/textarea.js') }}"></script>
 <script src="{{ asset('js/home/preencheCampos.js') }}"></script>
+<script src="{{ asset('js/home/preencheMensagem.js') }}"></script>
 <script src="{{ asset('js/home/listaProdutos.js') }}"></script>
 <script src="{{ asset('js/tools/tool/copiaText.js') }}"></script>
 
