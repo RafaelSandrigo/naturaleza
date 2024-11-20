@@ -103,7 +103,7 @@
             $('.save-btn').click(function() {
                 let row = $(this).closest('tr');
                 let id = row.find('td[name="id"]').data('id');
-                let status_cabecalho = row.find('input[name="status_cabecalho"]').val();
+                let status_cabecalho = row.find('input[name="status_cabecalho"]').is(':checked') ? 's' : 'n';
                 let nome_cabecalho = row.find('input[name="nome_cabecalho"]').val();
                 let horario_pedido = row.find('input[name="horario_pedido"]').val();
                 let dia_pedido = row.find('select[name="dia_pedido"]').val();

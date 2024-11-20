@@ -65,7 +65,7 @@
             $('.save-btn').click(function() {
                 let row = $(this).closest('tr');
                 let id = row.find('td[name="id"]').data('id');
-                let status_produto = row.find('input[name="status_produto"]').val();
+                let status_produto = row.find('input[name="status_produto"]').is(':checked') ? 's' : 'n';;
                 let nome_produto = row.find('input[name="nome_produto"]').val();
                 let preco_produto = parseFloat(row.find('input[name="preco_produto"]').val().replace(',','.'));
                 let categoria_produto = parseInt(row.find('select[name="categoria_produto"]').val());
