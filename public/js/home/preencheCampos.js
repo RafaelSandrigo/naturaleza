@@ -29,7 +29,7 @@ async function preencheCampos(url, idTextarea) {
         let textarea = document.getElementById(idTextarea);
         console.log(dados.dados);
         if (!dados.success || dados.dados === "Nenhum dado disponível" || typeof dados.dados =="object") {
-            textarea.innerHTML = "Nenhum dado disponível";    
+            textarea.placeholder = "Nenhum dado disponível";    
             return false;
         }
 
