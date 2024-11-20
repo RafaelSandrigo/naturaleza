@@ -28,7 +28,7 @@
                 # DIRETO PRODUTOR #
                 Pedidos até segunda-feira, às 12 horas!
                 Entregas TERÇA-FEIRA, das 17 às 19 horas!
-                </textarea>
+</textarea>
                 <button class="copy-btn" onclick="copyToClipboard()">Copiar</button>
 
                 <h4 class="card-title">Cabeçalho</h4>
