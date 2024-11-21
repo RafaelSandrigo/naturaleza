@@ -3,8 +3,12 @@ async function buscaCabecalho(url) {
         $.ajax({
             url: url, 
             method: 'GET', 
+            data:{
+                status: 'ativo',
+            },
             success: function(response) {
                 let campo = {};
+                console.log(response);
                 campo['success'] = response.success;
                 campo['dados'] = (response.data != null) ? response.data : "Nenhum dado disponível";
                 resolve(campo);  // Resolva a Promise com o resultado
@@ -25,15 +29,26 @@ async function buscaCabecalho(url) {
 async function preencheCampos(url, idTextarea) {
     try {
         let dados = await buscaCabecalho(url);  // Aguarda a resolução da Promise
-
+        console.log("Executando o campo: " + idTextarea);
         let textarea = document.getElementById(idTextarea);
         console.log(dados.dados);
-        if (!dados.success || dados.dados === "Nenhum dado disponível" || typeof dados.dados =="object") {
+        if (!dados.success || dados.dados === "Nenhum dado disponível" || dados.dados == []) {
             textarea.placeholder = "Nenhum dado disponível";    
             return false;
         }
-
-        textarea.innerHTML = dados.data;
+        switch (idTextarea) {
+            case 'cabecalho':
+                textarea.innerHTML = dados.dados.texto_cabecalho;
+                
+                break;
+            
+            case "fechamento":
+                textarea.innerHTML = dados.dados.texto_fechamento;
+                break;
+            default:
+                textarea.innerHTML = dados.data;
+                break;
+        }
 
     } catch (error) {
         console.error("Erro ao preencher o", idTextarea,": ", error);
@@ -41,6 +56,6 @@ async function preencheCampos(url, idTextarea) {
 }
 
 preencheCampos('/api/cabecalho/ativo','cabecalho');
-preencheCampos('/api/alertas/status','alertas');
-preencheCampos('/api/comunicados/status','comunicados');
+// preencheCampos('/api/alertas/status','alertas');
+// preencheCampos('/api/comunicados/status','comunicados');
 preencheCampos('/api/fechamentos/status','fechamento');

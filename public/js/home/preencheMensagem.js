@@ -49,7 +49,8 @@ async function escreveProdutosPorCategoria(categorias) {
 
 function preencheMenssagem(){
     let textareaMensagem = document.getElementById('mensagem');
-    let textareas = ['cabecalho', 'alertas', 'itens', 'comunicados', 'fechamento'];
+    // let textareas = ['cabecalho', 'alertas', 'itens', 'comunicados', 'fechamento'];
+    let textareas = ['cabecalho', 'itens', 'fechamento'];
 
     textareas.forEach(textarea => {
         textarea = document.getElementById(textarea);

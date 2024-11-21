@@ -111,11 +111,11 @@ class ApiFechamentosController extends Controller
         }
     }
 
-    public function getByStatus($status){
+    public function getByStatus(Request $status){
         try {
-            $status = $status == "ativo" ? "s" : "n";
-            $cabecalho = (new Fechamentos())->getByStatus($status);    
-            return response()->json(['success' => true, 'data' => $cabecalho]);
+            $status = $status->status == "ativo" ? "s" : "n";
+            $fechamento = (new Fechamentos())->getByStatus($status);
+            return response()->json(['success' => true, 'data' => $fechamento]);
         } catch (Exception $e)  {
             return response()->json(['success' => false, "error" => $e->getMessage()]);
         }

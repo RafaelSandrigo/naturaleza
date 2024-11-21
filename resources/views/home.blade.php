@@ -24,24 +24,25 @@
             <div class="textarea-container">
                 <h4 class="card-title">Mensagem</h4>
                 <textarea name="" id="mensagem" readonly placeholder="Carregando...">
-                Lista de produtos orgânicos e agroecológicos certificados.
-                # DIRETO PRODUTOR #
-                Pedidos até segunda-feira, às 12 horas!
-                Entregas TERÇA-FEIRA, das 17 às 19 horas!
+Lista de produtos orgânicos e agroecológicos certificados.
+# DIRETO PRODUTOR #
+Pedidos até segunda-feira, às 12 horas!
+Entregas TERÇA-FEIRA, das 17 às 19 horas!
+
 </textarea>
                 <button class="copy-btn" onclick="copyToClipboard()">Copiar</button>
 
                 <h4 class="card-title">Cabeçalho</h4>
                 <textarea class="form-control" id="cabecalho" readonly placeholder="Carregando..."></textarea>
 
-                <h4 class="card-title">Mensagem de alerta</h4>
-                <textarea class="form-control" id="alertas" readonly placeholder="Carregando..."></textarea>
+                {{-- <h4 class="card-title">Mensagem de alerta</h4>
+                <textarea class="form-control" id="alertas" readonly placeholder="Carregando..."></textarea> --}}
 
                 <h4 class="card-title">ITENS</h4>
                 <textarea class="form-control" id="itens" readonly placeholder="Carregando..."></textarea>
 
-                <h4 class="card-title">Comunicados</h4>
-                <textarea class="form-control" id="comunicados" readonly placeholder="Carregando..."></textarea>
+                {{-- <h4 class="card-title">Comunicados</h4>
+                <textarea class="form-control" id="comunicados" readonly placeholder="Carregando..."></textarea> --}}
 
                 <h4 class="card-title">Fechamento</h4>
                 <textarea class="form-control" id="fechamento" readonly placeholder="Carregando..."></textarea>
