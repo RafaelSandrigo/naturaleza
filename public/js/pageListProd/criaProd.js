@@ -32,8 +32,8 @@ document.getElementById('addProductBtn').addEventListener('click', function() {
             <select name="categoria_produto" class="form-select" id="categoria" id></select>
         </td>
         <td><input name="medida_produto" type="text" value="" class="form-control"></td>
-        <td><button class="btn btn-success save-btn" id="criaProductBtn">Criar</button></td>
-        <td><button type="button" class="btn btn-outline-danger btn-sm" id="cancelarProdutoBtn">Cancelar</button></td>
+        <td class="text-center align-middle"><button class="btn btn-success save-btn" id="criaProductBtn">Criar</button>
+        <button type="button" class="btn btn-outline-danger btn-sm" id="cancelarProdutoBtn">Cancelar</button></td>
         <td name="id" hidden data-id=""></td>
     `;
 
